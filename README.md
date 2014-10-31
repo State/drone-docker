@@ -1,4 +1,4 @@
-# jenkins-docker
+# drone-docker
 
 Docker built image is hosted here: https://registry.hub.docker.com/u/state/drone/
 
