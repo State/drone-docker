@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# A hacky way to discover docker hosts
+if [[ ! -n ${DRONE_WORKER_NODES} ]] && [[ -n ${DOCKER_HOST_DNS} ]]; then
+  workers=$(host -4 -t A ${DOCKER_HOST_DNS} | awk 'NR > 1 { printf(",") } /has address/ {printf("tcp://%s:2375", $4)}')
+  export DRONE_WORKER_NODES=${workers}
+fi
+
 # Allow to pass in drone options after --
 if [[ $# -lt 1 ]] || [[ "$1" == "--"* ]]; then
   exec /usr/local/bin/droned "$@"
