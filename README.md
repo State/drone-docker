@@ -12,6 +12,10 @@ obviously drone preinstall.
 Configuration is done using environment variables or by passing a config file
 via `--config drone.toml`.
 
+- `DOCKER_HOST_DNS` - if set, then before drone is started, a dns lookup will
+  be done to resolve IPs and set them as `DRONE_WORKER_NODES` (poor man's hosts
+discovery).
+
 See https://github.com/drone/drone for more details.
 
 ## Running
