@@ -15,6 +15,8 @@ via `--config drone.toml`.
 - `DOCKER_HOST_DNS` - if set, then before drone is started, a dns lookup will
   be done to resolve IPs and set them as `DRONE_WORKER_NODES` (poor man's hosts
 discovery).
+- `DRONE_REGISTRY_HOST` - private registry host
+- `DRONE_REGISTRY_AUTH` - private registry auth string (base64 encoded user:password)
 
 See https://github.com/drone/drone for more details.
 

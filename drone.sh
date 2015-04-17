@@ -6,6 +6,17 @@ if [[ ! -n ${DRONE_WORKER_NODES} ]] && [[ -n ${DOCKER_HOST_DNS} ]]; then
   export DRONE_WORKER_NODES=${workers}
 fi
 
+if [[ ${DRONE_REGISTRY_HOST} ]] && [[ ${DRONE_REGISTRY_AUTH} ]]; then
+cat <<EOF > /root/.dockercfg
+{
+    "${DRONE_REGISTRY_HOST}": {
+    "email": "",
+    "auth": "${DRONE_REGISTRY_AUTH}"
+  }
+}
+EOF
+fi
+
 # Allow to pass in drone options after --
 if [[ $# -lt 1 ]] || [[ "$1" == "--"* ]]; then
   exec /usr/local/bin/droned "$@"
